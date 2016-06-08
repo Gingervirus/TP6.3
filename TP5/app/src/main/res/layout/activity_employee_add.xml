@@ -55,17 +55,17 @@ android:orientation="vertical" >
         <RadioButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Teacher"
+            android:text="@string/radio_teacher"
             android:id="@+id/rbTeacher" />
         <RadioButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Principal"
+            android:text="@string/radio_principal"
             android:id="@+id/rbPrincipal" />
         <RadioButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Secratary"
+            android:text="@string/radio_secratary"
             android:id="@+id/rbSecratary" />
     </RadioGroup>
 
@@ -73,7 +73,6 @@ android:orientation="vertical" >
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:text="Submit"
-        android:onClick="addEmployee"
-        android:id="@+id/btnAddEmployee" />/>
+        android:text="@string/btn_preview"
+        android:id="@+id/btnPreview" />/>
 </LinearLayout>

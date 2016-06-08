@@ -9,8 +9,11 @@ import android.test.AndroidTestCase;
 
 import com.example.armin.tp5.domain.Employee.EmployeeData;
 import com.example.armin.tp5.domain.Employee.EmployeeDetails;
+import com.example.armin.tp5.factories.Employee.EmployeeFactory;
 import com.example.armin.tp5.factories.Salary.SalaryFactory;
 import com.example.armin.tp5.factories.WorkingHours.WorkingHoursFactory;
+import com.example.armin.tp5.repository.Employee.EmployeeRepository;
+import com.example.armin.tp5.repository.Employee.Impl.EmployeeRepositoryImpl;
 import com.example.armin.tp5.services.Employee.InsertEmployeeService;
 
 import junit.framework.Assert;
@@ -32,11 +35,7 @@ public class TestEmployeeAddService extends AndroidTestCase {
         public void onServiceConnected(ComponentName name, IBinder service) {
             InsertEmployeeService.MyLocalBinder binder = (InsertEmployeeService.MyLocalBinder) service;
             insertService = binder.getService();
-            try {
-                testInsert();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+
             isBound = true;
         }
 
@@ -48,25 +47,11 @@ public class TestEmployeeAddService extends AndroidTestCase {
 
         public void testInsert() throws Exception
         {
-            EmployeeDetails details = new EmployeeDetails.Builder()
-                    .name("Armin")
-                    .lastName("Wentzel")
-                    .gender("Male")
-                    .cell("0764805005")
-                    .dob("21/06/1995")
-                    .build();
-            EmployeeData createEntity = new EmployeeData.Builder()
-                    .salary(Double.parseDouble(SalaryFactory.getSalary("Teacher")))
-                    .workingHours(WorkingHoursFactory.getWorkingHours("Teacher"))
-                    .sarsNr("2314565346")
-                    .employeeDetails(details)
-                    .build();
-            EmployeeData insertEntity = new EmployeeData.Builder()
-                    .copy(createEntity)
-                    .workingHours("12H00-17H00")
-                    .build();
+            EmployeeFactory emp = new EmployeeFactory();
+            EmployeeData e = emp.getEmployee(null, "2314565346", 15000.00, "08H00-13H00", "Armin", "Wentzel", "21/06/1995", "Male", "0764805005", "Teacher");
 
-            Assert.assertNotNull(insertService.insertEmployee(insertEntity));
+            String isActivated = insertService.insertEmployee(e);
+            Assert.assertEquals("ACTIVATED", isActivated);
         }
 }
 

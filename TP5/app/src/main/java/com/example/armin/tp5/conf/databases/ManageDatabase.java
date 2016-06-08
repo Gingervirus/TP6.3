@@ -21,6 +21,7 @@ public class ManageDatabase extends  SQLiteOpenHelper {
     public static final String COLUMN_DATE_OF_BIRTH = "dateOfBirth";
     public static final String COLUMN_GENDER = "gender";
     public static final String COLUMN_CELL = "cellphoneNr";
+    public static final String COLUMN_JOB = "Job";
 
     private static final String DATABASE_EMPLOYEE_CREATE = " CREATE TABLE "
             + TABLE_NAME_EMPLOYEE + "("
@@ -32,7 +33,8 @@ public class ManageDatabase extends  SQLiteOpenHelper {
             + COLUMN_LASTNAME + " TEXT NOT NULL , "
             + COLUMN_DATE_OF_BIRTH + " TEXT NOT NULL , "
             + COLUMN_GENDER + " TEXT NOT NULL , "
-            + COLUMN_CELL + " TEXT  NOT NULL );";
+            + COLUMN_CELL + " TEXT NOT NULL ,"
+            + COLUMN_JOB + " TEXT  NOT NULL );";
 
     public static final String TABLE_NAME_STUDENT = "student";
 

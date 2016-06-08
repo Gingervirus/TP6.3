@@ -15,7 +15,7 @@ public class TestStudent {
     @Test
     public void testStudent() throws Exception {
 
-        StudentFactory s = new StudentFactory("214296725", "3A", "75#77#82#89#67#69#90", true, "Armin", "Wentzel", "21/06/1995", "Male", "0764805005");
+        StudentFactory s = new StudentFactory(null, "3A", "75#77#82#89#67#69#90", true, "Armin", "Wentzel", "21/06/1995", "Male", "0764805005");
         StudentData person = s.buildStudentData();
         Assert.assertEquals(person.getStudentDetails().getDob(),"21/06/1995");
         Assert.assertEquals(person.getStudentDetails().getName(),"Armin");

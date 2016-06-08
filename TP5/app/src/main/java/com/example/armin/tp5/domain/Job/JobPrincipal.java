@@ -6,7 +6,7 @@ package com.example.armin.tp5.domain.Job;
 public class JobPrincipal extends Job {
     @Override
     public String handleRequest(String request) {
-        if (request.equals("PRI")) {
+        if (request.equals("Principal")) {
             return "Principal";
         } else {
             if (nextJob != null) {

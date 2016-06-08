@@ -14,12 +14,12 @@ public class TestEmployee{
     @Test
     public void teste() throws Exception {
 
-        EmployeeFactory emp = new EmployeeFactory(null, "2314565346", 15000.00, "08H00-13H00", "Armin", "Wentzel", "21/06/1995", "Male", "0764805005", "Teacher");
-        EmployeeData e = emp.getEmployee();
+        EmployeeFactory emp = new EmployeeFactory();
+        EmployeeData e = emp.getEmployee(null, "2314565346", 15000.00, "08H00-13H00", "Armin", "Wentzel", "21/06/1995", "Male", "0764805005", "Teacher");
 
         Assert.assertEquals(e.getDetails().getDob(), "21/06/1995");
         Assert.assertEquals(e.getDetails().getName(), "Armin");
-        Assert.assertEquals(e.getEmpNr(), "TEA11111");
+        Assert.assertEquals(e.getEmpNr(), null);
         Assert.assertEquals(e.getDetails().getLastName(), "Wentzel");
         Assert.assertEquals(e.getDetails().getGender(), "Male");
         Assert.assertEquals(e.getSalary(), 15000.00);

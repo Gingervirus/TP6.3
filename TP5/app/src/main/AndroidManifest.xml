@@ -23,8 +23,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.Employee.EmployeePreview">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-        <activity android:name=".activities.Employee.EmployeeDeleteActivity">
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activities.Employee.EmployeeShowAll">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,22 +38,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activities.Employee.EmployeeUpdateActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".activities.Employee.EmployeeViewAllActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
+        <service
+            android:name=".services.Employee.InsertEmployeeService"
+            android:enabled="true"
+            android:exported="true"></service>
         <service
             android:name=".services.Employee.UpdateEmployeeService"
             android:enabled="true"

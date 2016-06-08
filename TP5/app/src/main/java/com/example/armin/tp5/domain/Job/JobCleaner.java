@@ -6,7 +6,7 @@ package com.example.armin.tp5.domain.Job;
 public class JobCleaner extends Job{
     @Override
     public String handleRequest(String request) {
-        if(request.equals("CLE")){
+        if(request.equals("Cleaner")){
             return "Cleaner";
         }else{
             if (nextJob!=null) {

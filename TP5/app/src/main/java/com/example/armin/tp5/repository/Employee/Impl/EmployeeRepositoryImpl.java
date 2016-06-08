@@ -14,6 +14,8 @@ import com.example.armin.tp5.conf.databases.ManageDatabase;
 import com.example.armin.tp5.conf.util.App;
 import com.example.armin.tp5.domain.Employee.EmployeeData;
 import com.example.armin.tp5.domain.Employee.EmployeeDetails;
+import com.example.armin.tp5.domain.Job.Job;
+import com.example.armin.tp5.factories.Employee.EmployeeFactory;
 import com.example.armin.tp5.repository.Employee.EmployeeRepository;
 
 import java.util.HashSet;
@@ -35,7 +37,7 @@ public class EmployeeRepositoryImpl extends SQLiteOpenHelper implements Employee
     public static final String COLUMN_DATE_OF_BIRTH = "dateOfBirth";
     public static final String COLUMN_GENDER = "gender";
     public static final String COLUMN_CELL = "cellphoneNr";
-
+    public static final String COLUMN_JOB = "cellphoneNr";
 
     public EmployeeRepositoryImpl(Context context) {
         super(context, DBConstants.DATABASE_NAME, null, DBConstants.DATABASE_VERSION);
@@ -84,7 +86,9 @@ public class EmployeeRepositoryImpl extends SQLiteOpenHelper implements Employee
                         COLUMN_LASTNAME,
                         COLUMN_DATE_OF_BIRTH,
                         COLUMN_GENDER,
-                        COLUMN_CELL},
+                        COLUMN_CELL,
+                        COLUMN_GENDER,
+                        COLUMN_JOB},
                 COLUMN_EMPLOYEE_NR  + " =? ",
                 new String[]{String.valueOf(id)},
                 null,
@@ -103,6 +107,7 @@ public class EmployeeRepositoryImpl extends SQLiteOpenHelper implements Employee
                     .sarsNr(cursor.getString(cursor.getColumnIndex(COLUMN_SARS_NR)))
                     .salary(cursor.getDouble(cursor.getColumnIndex(COLUMN_SALARY)))
                     .workingHours(cursor.getString(cursor.getColumnIndex(COLUMN_WORKHOURS)))
+                    .job(cursor.getString(cursor.getColumnIndex(COLUMN_CELL)))
                     .employeeDetails(employeeDetails)
                     .build();
 
@@ -116,7 +121,6 @@ public class EmployeeRepositoryImpl extends SQLiteOpenHelper implements Employee
     public EmployeeData save(EmployeeData entity) {
         open();
         ContentValues values = new ContentValues();
-        values.put(COLUMN_EMPLOYEE_NR , entity.getEmpNr());
         values.put(COLUMN_SARS_NR, entity.getSarsNr());
         values.put(COLUMN_SALARY, entity.getSalary());
         values.put(COLUMN_WORKHOURS, entity.getWorkingHours());
@@ -125,7 +129,7 @@ public class EmployeeRepositoryImpl extends SQLiteOpenHelper implements Employee
         values.put(COLUMN_DATE_OF_BIRTH, entity.getDetails().getDob());
         values.put(COLUMN_GENDER, entity.getDetails().getGender());
         values.put(COLUMN_CELL, entity.getDetails().getCell());
-
+        values.put(COLUMN_JOB, entity.getJob());
         Long id = db.insertOrThrow(TABLE_NAME, null, values);
         EmployeeData insertedEntity = new EmployeeData.Builder()
                 .copy(entity)
@@ -147,6 +151,7 @@ public class EmployeeRepositoryImpl extends SQLiteOpenHelper implements Employee
         values.put(COLUMN_DATE_OF_BIRTH, entity.getDetails().getDob());
         values.put(COLUMN_GENDER, entity.getDetails().getGender());
         values.put(COLUMN_CELL, entity.getDetails().getCell());
+        values.put(COLUMN_JOB, entity.getJob());
         db.update(
                 TABLE_NAME,
                 values,
@@ -186,6 +191,7 @@ public class EmployeeRepositoryImpl extends SQLiteOpenHelper implements Employee
                         .sarsNr(cursor.getString(cursor.getColumnIndex(COLUMN_SARS_NR)))
                         .salary(cursor.getDouble(cursor.getColumnIndex(COLUMN_SALARY)))
                         .workingHours(cursor.getString(cursor.getColumnIndex(COLUMN_WORKHOURS)))
+                        .job(COLUMN_JOB)
                         .employeeDetails(employeeDetails)
                         .build();
                 employeeDatas.add(employeeData);

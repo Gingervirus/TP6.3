@@ -37,6 +37,7 @@ public class TestEmployeeRepository extends AndroidTestCase{
                 .salary(Double.parseDouble(SalaryFactory.getSalary("Teacher")))
                 .workingHours(WorkingHoursFactory.getWorkingHours("Teacher"))
                 .sarsNr("2314565346")
+                .job("Teacher")
                 .employeeDetails(details)
                 .build();
 
