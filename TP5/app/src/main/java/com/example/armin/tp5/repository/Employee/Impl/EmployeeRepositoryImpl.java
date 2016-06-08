@@ -37,7 +37,7 @@ public class EmployeeRepositoryImpl extends SQLiteOpenHelper implements Employee
     public static final String COLUMN_DATE_OF_BIRTH = "dateOfBirth";
     public static final String COLUMN_GENDER = "gender";
     public static final String COLUMN_CELL = "cellphoneNr";
-    public static final String COLUMN_JOB = "cellphoneNr";
+    public static final String COLUMN_JOB = "job";
 
     public EmployeeRepositoryImpl(Context context) {
         super(context, DBConstants.DATABASE_NAME, null, DBConstants.DATABASE_VERSION);
@@ -87,7 +87,6 @@ public class EmployeeRepositoryImpl extends SQLiteOpenHelper implements Employee
                         COLUMN_DATE_OF_BIRTH,
                         COLUMN_GENDER,
                         COLUMN_CELL,
-                        COLUMN_GENDER,
                         COLUMN_JOB},
                 COLUMN_EMPLOYEE_NR  + " =? ",
                 new String[]{String.valueOf(id)},
@@ -107,7 +106,7 @@ public class EmployeeRepositoryImpl extends SQLiteOpenHelper implements Employee
                     .sarsNr(cursor.getString(cursor.getColumnIndex(COLUMN_SARS_NR)))
                     .salary(cursor.getDouble(cursor.getColumnIndex(COLUMN_SALARY)))
                     .workingHours(cursor.getString(cursor.getColumnIndex(COLUMN_WORKHOURS)))
-                    .job(cursor.getString(cursor.getColumnIndex(COLUMN_CELL)))
+                    .job(COLUMN_JOB)
                     .employeeDetails(employeeDetails)
                     .build();
 

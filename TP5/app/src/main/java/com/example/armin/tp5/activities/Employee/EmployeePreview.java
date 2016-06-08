@@ -13,10 +13,13 @@ import android.widget.TextView;
 import com.example.armin.tp5.R;
 import com.example.armin.tp5.domain.Employee.EmployeeData;
 import com.example.armin.tp5.factories.Employee.EmployeeFactory;
+import com.example.armin.tp5.repository.Employee.EmployeeRepository;
+import com.example.armin.tp5.repository.Employee.Impl.EmployeeRepositoryImpl;
 import com.example.armin.tp5.services.Employee.InsertEmployeeService;
 
 public class EmployeePreview extends AppCompatActivity{
     InsertEmployeeService insertService;
+    EmployeeRepository repo;
     boolean isBound = false;
 
     private TextView name;
@@ -35,7 +38,7 @@ public class EmployeePreview extends AppCompatActivity{
         setContentView(R.layout.activity_employee_preview);
         Intent c = new Intent(this.getApplicationContext(), InsertEmployeeService.class);
         bindService(c, connection, Context.BIND_AUTO_CREATE);
-
+        repo = new EmployeeRepositoryImpl(this.getApplicationContext());
         name =(TextView)findViewById(R.id.txtName);
         surname =(TextView)findViewById(R.id.txtSurname);
         dob =(TextView)findViewById(R.id.txtDob);
@@ -103,6 +106,8 @@ public class EmployeePreview extends AppCompatActivity{
         EmployeeFactory emp = new EmployeeFactory();
         EmployeeData e = emp.getEmployee(null, sars.getText().toString(), Double.parseDouble(salary.getText().toString()), workHours.getText().toString(), name.getText().toString(), surname.getText().toString(), dob.getText().toString(), gender.getText().toString(), cell.getText().toString(), job.getText().toString());
         String isActivated = insertService.insertEmployee(e);
+
+       // EmployeeData insertedEntity = repo.save(e);
         startActivity(intent);
     }
 }
